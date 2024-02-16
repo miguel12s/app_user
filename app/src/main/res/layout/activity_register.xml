@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        >
+
+        <ImageView
+            android:id="@+id/back_home"
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"
+            app:srcCompat="@drawable/icon" />
+
+        <TextView
+
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/rubik"
+            android:paddingLeft="20dp"
+            android:text="@string/greetins"
+            android:textAlignment="viewStart"
+            android:textColor="@color/dark"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_gravity="start"
+            android:id="@+id/tvemail"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="text"
+            android:gravity="left"
+            android:padding="15dp"
+            android:background="@drawable/button_border"
+
+            />
+
+        <EditText
+            android:id="@+id/tvpassword"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="text|textPassword"
+            android:background="@drawable/button_border"
+            android:padding="15dp"
+            android:layout_marginBottom="10dp"
+
+            />
+
+        <EditText
+            android:id="@+id/tvnames"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
+            android:hint="@string/names"
+            android:inputType="text"
+            android:padding="15dp"
+            android:background="@drawable/button_border"
+            android:layout_marginBottom="10dp"
+
+            />
+
+        <EditText
+            android:id="@+id/tvphone"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="@string/phone"
+            android:inputType="number"
+            android:background="@drawable/button_border"
+            android:padding="15dp"
+            android:layout_marginBottom="30dp"
+
+            />
+
+        <Button
+            android:id="@+id/btregister"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:backgroundTint="@color/dark"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/btregister"
+            app:cornerRadius="12dp"
+            android:layout_gravity="center"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/create"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/dark" />
+
+            <TextView
+                android:id="@+id/iniciar_sesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
+                android:text="@string/create2"
+                android:textAlignment="textStart"
+                android:textColor="@color/primary" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

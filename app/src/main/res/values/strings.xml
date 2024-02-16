@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">app_user</string>
+    <string name="iub">IUB</string>
+    <string name="home">Hola, IUB</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="greetins">¡Hola! Regístrese para comenzar</string>
+    <string name="email">Correo electronico</string>
+    <string name="password">Contraseña</string>
+    <string name="names">Nombres</string>
+    <string name="phone">Numero de celular</string>
+    <string name="btregister">Registrar</string>
+    <string name="create">
+¿Ya tienes una cuenta?</string>
+    <string name="create2">Inicia sesión ahora</string>
+    <string name="welcome"> Bienvenido de nuevo!
+</string>
+    <string name="forgot">Olvide mi contraseña
+</string>
+    <string name="register1">
+¿No tienes una cuenta?</string>
+    <string name="register2">Registrate ahora</string>
+    <string name="login2">Iniciar sesión</string>
+    <string name="btcall">llamar</string>
+    <string name="btemail">Email</string>
+    <string name="msn">MSN</string>
+    <string name="bteditar"> Editar datos</string>
+    <string name="update">¡Hola! Quieres actualizar tus datos</string>
+    <string name="forgot2">¿Has olvidado tu
+contraseña?</string>
+    <string name="descriptionforgot">¡No te preocupes! Por favor ingrese la dirección de correo electrónico vinculada con su cuenta.
+</string>
+    <string name="code">Enviar código</string>
+    <string name="title_activity_forgot">forgot</string>
+    <string name="update2">Guardar Cambios</string>
+</resources>

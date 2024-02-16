@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        >
+        <ImageView
+            android:id="@+id/back_login2"
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
+            app:srcCompat="@drawable/icon" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:paddingLeft="15dp"
+            android:text="@string/home"
+            android:textColor="@color/dark"
+            android:textSize="30sp"
+            android:textStyle="bold"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+
+            >
+
+            <Button
+                android:id="@+id/btcall"
+                android:layout_width="94dp"
+                android:layout_height="47dp"
+                android:backgroundTint="@color/dark"
+
+                android:text="@string/btcall"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="35dp"
+
+                app:cornerRadius="12px"
+
+                />
+
+            <Button
+                android:id="@+id/btemail"
+                android:layout_width="94dp"
+                android:layout_height="47dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/dark"
+                android:text="@string/btemail"
+                app:cornerRadius="12px"
+                android:layout_marginRight="35dp"
+
+
+                />
+
+            <Button
+                android:id="@+id/btmsn"
+                android:layout_width="94dp"
+                android:layout_height="47dp"
+                android:layout_marginRight="35dp"
+                android:backgroundTint="@color/dark"
+                android:text="@string/msn"
+                app:cornerRadius="12px"
+
+                />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="322dp"
+            android:layout_height="65dp"
+            android:id="@+id/bteditardatos"
+            app:cornerRadius="8px"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/dark"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="@string/bteditar" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateProfileActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <ImageView
+            android:id="@+id/back_profile"
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
+            app:srcCompat="@drawable/icon" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/rubik"
+            android:paddingLeft="20dp"
+            android:text="@string/update"
+            android:textAlignment="viewStart"
+            android:textColor="@color/dark"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:gravity="left"
+            android:padding="15dp"
+            android:background="@drawable/button_border"
+            android:id="@+id/email"
+            android:layout_width="297dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="15dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="text" />
+
+        <EditText
+            android:gravity="left"
+            android:padding="15dp"
+            android:background="@drawable/button_border"
+            android:id="@+id/contraseña"
+            android:layout_width="297dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="15dp"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:gravity="left"
+            android:padding="15dp"
+            android:background="@drawable/button_border"
+            android:id="@+id/nombres"
+            android:layout_width="297dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="15dp"
+            android:ems="10"
+            android:hint="@string/names"
+            android:inputType="text" />
+
+        <EditText
+            android:gravity="left"
+            android:padding="15dp"
+            android:background="@drawable/button_border"
+            android:id="@+id/numero"
+            android:layout_width="297dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="40dp"
+            android:ems="10"
+            android:hint="@string/phone"
+            android:inputType="number"
+
+
+            />
+
+        <Button
+            android:gravity="center"
+            android:id="@+id/btupdate"
+            android:layout_width="322dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/dark"
+
+            android:text="@string/update2"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
