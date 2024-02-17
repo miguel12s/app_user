@@ -3,9 +3,11 @@ package com.example.app_user
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 
 class UpdateProfileActivity : AppCompatActivity() {
     private lateinit var tvemail: TextView
@@ -35,13 +37,35 @@ class UpdateProfileActivity : AppCompatActivity() {
         tvnombres.text=user.names
         tvtelefono.text=user.telefono.toString()
         bteditar.setOnClickListener {
-            val phoneNumber=tvtelefono.text.toString()
 
-            val user2=User(tvemail.text.toString(),tvpassword.text.toString(),tvnombres.text.toString(),phoneNumber.toLong())
+            val email = tvemail.text.toString()
+            val password = tvpassword.text.toString()
+            val names = tvnombres.text.toString()
+            val phone = tvtelefono.text.toString()
+            val phoneNumber = phone.toLong()
 
-            val intent=Intent(this,ProfileActivity::class.java)
-            intent.putExtra("user",user2)
-            startActivity(intent)
+            if (email.isEmpty() || password.isEmpty() || names.isEmpty() || phone.isEmpty()) {
+                Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_SHORT).show()
+            } else if (names.length < 9 || password.length < 9 || phone.length!=10) {
+                Toast.makeText(
+                    this,
+                    "Los campos deben tener una longitud mayor a 8 y el telefono de 10",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+
+            }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                Toast.makeText(
+                    this,
+                    "El correo es invalido",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                val usuario = User(email, password, names, phoneNumber)
+                val intent = Intent(this, ProfileActivity::class.java)
+                intent.putExtra("user", usuario)
+                startActivity(intent)
+            }
         }
         back_profile.setOnClickListener{
             val intent=Intent(this,ProfileActivity::class.java)

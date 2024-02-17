@@ -4,10 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
 private lateinit var iniciarSesion:TextView
@@ -39,13 +41,30 @@ private lateinit var phone:String
                 val names = tvnames.text.toString()
                 phone = tvphone.text.toString()
                 val phoneNumber=phone.toLong()
-                if(email.isEmpty()||password.isEmpty()||names.isEmpty()){
-                    throw Exception()
+                if (email.isEmpty() || password.isEmpty() || names.isEmpty() || phone.isEmpty()) {
+                    Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_SHORT).show()
+                } else if (names.length < 9 || password.length < 9 || phone.length!=10) {
+                    Toast.makeText(
+                        this,
+                        "Los campos deben tener una longitud mayor a 8 y el telefono de 10",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+
+                }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    Toast.makeText(
+                        this,
+                        "El correo es invalido",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    val usuario = User(email, password, names, phoneNumber)
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    intent.putExtra("user", usuario)
+                    startActivity(intent)
                 }
-                val usuario=User(email,password,names,phoneNumber)
-                val intent=Intent(this,ProfileActivity::class.java)
-                intent.putExtra("user",usuario)
-                startActivity(intent)
+
+
             } catch (e:Exception){
                 Toast.makeText(this, "los campos no deben estar vacios", Toast.LENGTH_SHORT).show();
 
