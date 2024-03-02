@@ -59,7 +59,7 @@ private lateinit var phone:String
                     ).show()
                 } else {
                     val usuario = User(email, password, names, phoneNumber)
-                    val intent = Intent(this, ProfileActivity::class.java)
+                    val intent = Intent(this, LoginActivity::class.java)
                     intent.putExtra("user", usuario)
                     startActivity(intent)
                 }

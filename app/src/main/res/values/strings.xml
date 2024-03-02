@@ -33,4 +33,5 @@ contraseña?</string>
     <string name="code">Enviar código</string>
     <string name="title_activity_forgot">forgot</string>
     <string name="update2">Guardar Cambios</string>
+    <string name="logout">Logout</string>
 </resources>

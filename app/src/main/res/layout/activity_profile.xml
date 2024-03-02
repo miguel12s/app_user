@@ -85,6 +85,17 @@
                 app:cornerRadius="12px"
 
                 />
+
+            <Button
+                android:id="@+id/btlogout"
+                android:layout_width="94dp"
+                android:layout_height="47dp"
+                android:layout_marginRight="35dp"
+                android:backgroundTint="@color/dark"
+                android:text="@string/logout"
+                app:cornerRadius="12px"
+
+                />
         </LinearLayout>
 
         <Button
