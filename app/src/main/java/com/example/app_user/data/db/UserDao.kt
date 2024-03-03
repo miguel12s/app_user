@@ -12,8 +12,11 @@ interface UserDao {
     fun getUserByCredentials(correo: String, password: String): UserModel?
     @Query("Select * from user")
     fun getUsers(): List<UserModel>
+
+    @Query("select * from user where correo=:correo")
+    fun getUserForEmail(correo:String):UserModel
     @Insert
-    fun insert(user: UserModel)
+    fun insert(user: UserModel):Long
     @Delete
     fun delete(user: UserModel)
 

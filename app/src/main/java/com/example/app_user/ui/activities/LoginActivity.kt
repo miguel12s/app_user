@@ -7,6 +7,10 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.app_user.ui.viewModels.UserViewModel
+import com.example.app_user.utils.Common
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var forgot: TextView
@@ -16,10 +20,12 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var login: Button
     private lateinit var register: TextView
     private lateinit var img: ImageView
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         validateSession()
         forgot = findViewById(R.id.forgot)
         login = findViewById(R.id.btlogin)
@@ -29,22 +35,27 @@ class LoginActivity : AppCompatActivity() {
         register = findViewById(R.id.register2)
         img = findViewById(R.id.back_home)
 
-
+        userViewModel.loginResult.observe(this, Observer { isValidLogin ->
+            if (isValidLogin) {
+                val email = email.text.toString()
+                val password = password.text.toString()
+                saveSession(email, password)
+                goProfile()
+            } else {
+                Common.showToast(this, "Credenciales incorrectas")
+            }
+        })
         login.setOnClickListener {
-            val intent = intent
-            val user = intent.getSerializableExtra("user") as? User
             val email = email.text.toString()
             val password = password.text.toString()
+             if (email.isNotEmpty() && password.isNotEmpty()) {
 
-            if (user != null && user?.email == email && user?.password == password) {
-                saveSession(user)
-                goProfile(user)
-                val intent = Intent(this, ProfileActivity::class.java)
-                intent.putExtra("user", user)
-                startActivity(intent)
-            } else {
-                tvmessage.text = "la contraseña o el correo son incorrectos"
-            }
+                 userViewModel.validateLogin(email, password)
+
+             } else {
+                 tvmessage.text = "la contraseña o el correo son incorrectos"
+             }
+
         }
         forgot.setOnClickListener {
 
@@ -63,20 +74,17 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveSession(usuario: User?) {
+    private fun saveSession(email: String, password: String) {
         val sp = getSharedPreferences("parcial_movil", MODE_PRIVATE)
         val edit = sp.edit()
-        edit.putString("email", usuario?.email)
-        edit.putString("password", usuario?.password)
-        edit.putString("nombre", usuario?.names)
-        edit.putString("telefono", usuario?.telefono.toString())
+        edit.putString("email", email)
+        edit.putString("password", password)
         edit.apply()
 
     }
 
-    private fun goProfile(usuario: User?) {
+    private fun goProfile() {
         val intent = Intent(this, ProfileActivity::class.java)
-        intent.putExtra("user", usuario)
         startActivity(intent)
     }
 
@@ -84,13 +92,11 @@ class LoginActivity : AppCompatActivity() {
         val sp = getSharedPreferences("parcial_movil", MODE_PRIVATE)
         val email = sp.getString("email", "")
         val password = sp.getString("password", "")
-        val names = sp.getString("nombre", "")
-        val telefono = sp.getString("telefono", "")
+       
 
         if (email != null && password != null) {
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                val usuario = User(email, password, names ?: "", telefono?.toLong() ?: 0)
-                goProfile(usuario)
+                goProfile()
             }
         }
     }

@@ -24,14 +24,19 @@ class UserRepository(context: Context) {
         }
     }
 
-    suspend fun saveUser(
+    suspend fun  getUser(email:String):UserModel{
+        return withContext(Dispatchers.IO) {
+            database.userDao().getUserForEmail(email)
 
-        user: UserModel
 
-    ) {
-        withContext(Dispatchers.IO) {
+        }
+    }
 
-            database.userDao().insert(user)
+    suspend fun insertUser(user: UserModel):Boolean{
+        return withContext(Dispatchers.IO){
+          val userId=  database.userDao().insert(user)
+            userId.toInt() !=0
+
         }
     }
 }

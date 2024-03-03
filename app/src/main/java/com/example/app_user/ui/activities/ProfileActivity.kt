@@ -7,6 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.app_user.data.model.UserModel
+import com.example.app_user.ui.viewModels.UserViewModel
+import com.example.app_user.utils.Common
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var btemail: Button
@@ -16,7 +21,8 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var btlogout: Button
 
     private lateinit var back_login2: ImageView
-
+    private lateinit var userViewModel:UserViewModel
+    private var user:UserModel?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -26,12 +32,24 @@ class ProfileActivity : AppCompatActivity() {
         bteditar = findViewById(R.id.bteditardatos)
         back_login2 = findViewById(R.id.back_login2)
         btlogout=findViewById(R.id.btlogout)
-        val intent = intent
-        val user = intent.getSerializableExtra("user") as User?
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel.userProfile.observe(this, Observer { userProfile->
+
+            if (userProfile!=null){
+                user=userProfile
+            }else{
+                Common.showToast(this,"hubo un error al obtener el usuario")
+            }
+
+
+
+        })
+        //val intent = intent
+       // val user = intent.getSerializableExtra("user") as User?
 
         btemail.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
-            intent.data = Uri.parse("mailto:${user?.email}")
+            intent.data = Uri.parse("mailto:${user?.correo}")
             intent.putExtra(Intent.EXTRA_SUBJECT, "asunto del correo")
             intent.putExtra(Intent.EXTRA_TEXT, "cuerpo del correo")
             startActivity(intent)
@@ -44,13 +62,13 @@ class ProfileActivity : AppCompatActivity() {
         btmsn.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("sms:${user?.telefono}")
-            intent.putExtra("sms_body", "mensaje de ${user?.names}")
+            intent.putExtra("sms_body", "mensaje de ${user?.nombres}")
 
             startActivity(intent)
         }
         bteditar.setOnClickListener {
             val intent = Intent(this, UpdateProfileActivity::class.java)
-            intent.putExtra("user", user)
+            //intent.putExtra("user", user)
             startActivity(intent)
         }
         back_login2.setOnClickListener {
