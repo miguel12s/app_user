@@ -44,9 +44,6 @@ class ProfileActivity : AppCompatActivity() {
 
 
         })
-        //val intent = intent
-       // val user = intent.getSerializableExtra("user") as User?
-
         btemail.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:${user?.correo}")

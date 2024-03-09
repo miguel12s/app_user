@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.app_user.data.model.UserModel
 
 @Dao
@@ -19,5 +20,7 @@ interface UserDao {
     fun insert(user: UserModel):Long
     @Delete
     fun delete(user: UserModel)
+
+
 
 }
