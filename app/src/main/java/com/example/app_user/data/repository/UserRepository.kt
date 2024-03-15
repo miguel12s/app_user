@@ -18,24 +18,33 @@ class UserRepository(context: Context) {
 
     }
 
+    suspend fun updateUser(
+        correo: String, password: String, nombres: String, telefono: String, uid: Long
+    ):Int {
+        return withContext(Dispatchers.IO) {
+             database.userDao().update(
+                correo, password, nombres, telefono, uid)
+        }
+    }
+
     suspend fun getUsers(): List<UserModel> {
         return withContext(Dispatchers.IO) {
             database.userDao().getUsers()
         }
     }
 
-    suspend fun  getUser(email:String):UserModel{
+    suspend fun getUserForUid(uid: Long): UserModel {
         return withContext(Dispatchers.IO) {
-            database.userDao().getUserForEmail(email)
+            database.userDao().getUserForUid(uid)
 
 
         }
     }
 
-    suspend fun insertUser(user: UserModel):Boolean{
-        return withContext(Dispatchers.IO){
-          val userId=  database.userDao().insert(user)
-            userId.toInt() !=0
+    suspend fun insertUser(user: UserModel): Boolean {
+        return withContext(Dispatchers.IO) {
+            val userId = database.userDao().insert(user)
+            userId.toInt() != 0
 
         }
     }

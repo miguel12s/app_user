@@ -1,10 +1,12 @@
 package com.example.app_user.ui.viewModels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.app_user.User
 import com.example.app_user.data.model.UserModel
 import com.example.app_user.data.repository.UserRepository
 import kotlinx.coroutines.launch
@@ -23,16 +25,21 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
 
 
-    private val _userList = MutableLiveData<List<Boolean>>()
-    val userList: LiveData<List<Boolean>>
+    private val _userList = MutableLiveData<List<UserModel>>()
+    val userList: LiveData<List<UserModel>>
         get() = _userList
 
-    private val _userProfile=MutableLiveData<UserModel>()
-
-    val userProfile:LiveData<UserModel>
-        get()=_userProfile
 
 
+    private val _userForUid=MutableLiveData<UserModel>()
+
+    val userForUid:LiveData<UserModel>
+        get()=_userForUid
+
+    private val _updateUser = MutableLiveData<Int>()
+
+    val updateUser:LiveData<Int>
+        get()=_updateUser
 
     fun validateLogin(email: String, password: String) {
         viewModelScope.launch {
@@ -41,11 +48,36 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun insertUser(email: String, password: String, names: String, phoneNumber: String) {
+    fun insertUser(new_user:UserModel) {
         viewModelScope.launch {
-            val newUser = UserModel(null, email, password, names, phoneNumber)
-            val user=userRepository.insertUser(newUser)
+            val user = userRepository.insertUser(new_user)
             _userSaved.value = user
+        }
+    }
+
+    fun getUsers(){
+        viewModelScope.launch {
+            val users = userRepository.getUsers()
+            _userList.value = users
+        }
+    }
+
+    fun getUserForIud(uid:Long){
+        viewModelScope.launch {
+            val user=userRepository.getUserForUid(uid)
+            _userForUid.value=user
+        }
+    }
+
+    fun updateUser(    correo: String,
+                       password: String,
+                       nombres: String,
+                       telefono: String,
+                       uid: Long){
+        viewModelScope.launch {
+            val iduserupdate=userRepository.updateUser(correo,password,nombres,telefono,uid)
+            Log.d("userviewModel","data $iduserupdate")
+            _updateUser.value=iduserupdate
         }
     }
 

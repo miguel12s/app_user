@@ -14,13 +14,17 @@ interface UserDao {
     @Query("Select * from user")
     fun getUsers(): List<UserModel>
 
-    @Query("select * from user where correo=:correo")
-    fun getUserForEmail(correo:String):UserModel
+    @Query("select * from user where uid=:uid")
+    fun getUserForUid(uid:Long):UserModel
+
     @Insert
     fun insert(user: UserModel):Long
     @Delete
     fun delete(user: UserModel)
 
+    @Query("update user set correo=:correo ,password=:password,nombres=:nombres,telefono=:telefono where uid=:uid")
+
+    fun update(correo:String,password:String,nombres:String,telefono:String,uid: Long):Int
 
 
 }

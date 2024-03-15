@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.app_user.data.model.UserModel
 import com.example.app_user.ui.viewModels.UserViewModel
 import com.example.app_user.utils.Common
 import java.util.regex.Pattern
@@ -55,32 +56,21 @@ class RegisterActivity : AppCompatActivity() {
                 val names = tvnames.text.toString()
                 phone = tvphone.text.toString()
                 if (email.isEmpty() || password.isEmpty() || names.isEmpty() || phone.isEmpty()) {
-                    Toast.makeText(this, "Todos los campos son requeridos", Toast.LENGTH_SHORT)
-                        .show()
+                    showToast("los campos no deben estar vacios")
                 } else if (names.length < 9 || password.length < 9 || phone.length != 10) {
-                    Toast.makeText(
-                        this,
-                        "Los campos deben tener una longitud mayor a 8 y el telefono de 10",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-
+                    showToast("Los campos deben tener una longitud mayor a 8 y el telefono de 10")
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    Toast.makeText(
-                        this,
-                        "El correo es invalido",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast("El correo es invalido")
                 } else {
-                    userViewModel.insertUser(email, password, names, phone)
+                    val user=UserModel(null,email,password,names,phone)
+                    userViewModel.insertUser(user)
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 }
 
 
             } catch (e: Exception) {
-                Toast.makeText(this, "los campos no deben estar vacios", Toast.LENGTH_SHORT).show();
-
+showToast("los campos no deben estar vacios")
             }
 
 
@@ -97,5 +87,8 @@ class RegisterActivity : AppCompatActivity() {
         }
 
 
+    }
+    private fun showToast(message:String){
+        Common.showToast(this,message)
     }
 }
