@@ -84,6 +84,11 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        userViewModel.getUsers()
+    }
+
     private fun logout() {
         closeSession()
         goLogin()

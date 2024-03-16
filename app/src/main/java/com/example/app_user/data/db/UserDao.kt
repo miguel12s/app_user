@@ -22,9 +22,8 @@ interface UserDao {
     @Delete
     fun delete(user: UserModel)
 
-    @Query("update user set correo=:correo ,password=:password,nombres=:nombres,telefono=:telefono where uid=:uid")
-
-    fun update(correo:String,password:String,nombres:String,telefono:String,uid: Long):Int
+@Update
+    fun update(user:UserModel):Int
 
 
 }

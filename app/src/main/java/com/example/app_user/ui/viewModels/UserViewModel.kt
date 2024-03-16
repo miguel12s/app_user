@@ -75,7 +75,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                        telefono: String,
                        uid: Long){
         viewModelScope.launch {
-            val iduserupdate=userRepository.updateUser(correo,password,nombres,telefono,uid)
+            val user=UserModel(uid,correo,password,nombres,telefono)
+            val iduserupdate=userRepository.updateUser(user)
             Log.d("userviewModel","data $iduserupdate")
             _updateUser.value=iduserupdate
         }

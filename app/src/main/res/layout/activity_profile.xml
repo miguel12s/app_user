@@ -41,9 +41,13 @@
 
         <Button
             android:id="@+id/btlogout"
-            android:layout_width="94dp"
+            android:layout_width="320dp"
             android:layout_height="47dp"
-            android:layout_marginEnd="35dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="35dp"
+
             android:backgroundTint="@color/dark"
             android:text="@string/logout"
             app:cornerRadius="12dp"

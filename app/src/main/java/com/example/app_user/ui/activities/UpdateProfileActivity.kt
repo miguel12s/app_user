@@ -88,8 +88,7 @@ class UpdateProfileActivity : AppCompatActivity() {
                 ).show()
             } else {
                 userViewModel.updateUser(email,password,names,phone,uid)
-                val intent = Intent(this, ProfileActivity::class.java)
-                startActivity(intent)
+                finish()
             }
         }
         back_profile.setOnClickListener {

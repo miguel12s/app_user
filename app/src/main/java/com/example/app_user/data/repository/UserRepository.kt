@@ -19,11 +19,11 @@ class UserRepository(context: Context) {
     }
 
     suspend fun updateUser(
-        correo: String, password: String, nombres: String, telefono: String, uid: Long
+       user:UserModel
     ):Int {
         return withContext(Dispatchers.IO) {
              database.userDao().update(
-                correo, password, nombres, telefono, uid)
+               user)
         }
     }
 
